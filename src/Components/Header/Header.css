@@ -26,17 +26,21 @@
     padding: 10px;
     border: none;
     width: 100%;
+    outline: none;
 }
 
 .header__searchIcon{
     padding: 5px;
     height: 22px !important;
     background-color: #D3652A;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 
 .header__nav{
     display: flex;
     justify-content: space-evenly;
+    margin-left: 10px;
 }
 
 .header__option{
@@ -67,4 +71,6 @@
 .header__basketCount{
     margin-left: 10px;
     margin-right: 10px;
+    color: #D3652A;
+    font-size: 15px;
 }
