@@ -8,7 +8,7 @@ function Header() {
     <div className="header">
       <img
         className="header__logo"
-        src="https://raw.githubusercontent.com/dellucifer/Apni-Dukaan/master/public/logo_apni_dukaan.png"
+        src="https://raw.githubusercontent.com/dellucifer/Apni-Dukaan/master/public/logo-apni_dukaan.png"
         alt=""
       />
 
