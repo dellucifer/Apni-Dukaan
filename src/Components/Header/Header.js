@@ -1,16 +1,23 @@
 import React from "react";
 import "./Header.css";
-import SearchIcon from '@mui/icons-material/Search';
-import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
+import SearchIcon from "@mui/icons-material/Search";
+import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
+import { Link } from "react-router-dom";
+import { useStateValue } from '../../StateProvider'
 
 function Header() {
+
+  const [ {basket}, dispatch] = useStateValue();
+
   return (
     <div className="header">
-      <img
-        className="header__logo"
-        src="https://raw.githubusercontent.com/dellucifer/Apni-Dukaan/master/public/logo-apni_dukaan.png"
-        alt=""
-      />
+      <Link to="/">
+        <img
+          className="header__logo"
+          src="https://raw.githubusercontent.com/dellucifer/Apni-Dukaan/master/public/logo-apni_dukaan.png"
+          alt=""
+        />
+      </Link>
 
       <div className="header__search">
         <input className="header__searchInput" type="text" />
@@ -32,10 +39,15 @@ function Header() {
           <span className="header__option__top">Your</span>
           <span className="header__option__bottom">Prime</span>
         </div>
-        <div className="header__optionBasket">
+
+        <Link to='/checkout'>
+          <div className="header__optionBasket">
             <ShoppingBagIcon />
-            <span className="header__option__bottom header__basketCount">0</span>
-        </div>
+            <span className="header__option__bottom header__basketCount">
+              {basket?.length}
+            </span>
+          </div>
+        </Link>
       </div>
     </div>
   );
