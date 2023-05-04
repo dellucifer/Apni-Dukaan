@@ -26,8 +26,6 @@ function Home() {
     getProducts();
   }, [])
 
-  console.log(products)
-
   return (
     <div className="home">
       <div className="home__container">
