@@ -1,8 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Home.css";
 import Product from "./Product";
 
 function Home() {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const getProducts = async () => {
+      await fetch('https://fakestoreapi.com/products')
+            .then((res) => res.json())
+            .then((data) => {
+              const fetched_product = data.map((item) => ({
+                id: item.id,
+                image: item.image,
+                price: item.price*40,
+                title: item.title,
+                rating: item.rating.rate,
+                rate_count: item.rating.count
+              }))
+              
+              setProducts(fetched_product);
+            })
+    }
+
+    getProducts();
+  }, [])
+
+  console.log(products)
+
   return (
     <div className="home">
       <div className="home__container">
@@ -13,7 +38,15 @@ function Home() {
         />
       </div>
 
-      <div className="home__row">
+      <div className="home__products">
+        {products?.map((item, i) => {
+          return(
+            <Product key={i} id={item.id} title={item.title} price={item.price} rating={item.rating} rate_count={item.rate_count} image={item.image} />
+          )
+        })}
+      </div>
+
+      {/* <div className="home__row">
         <Product id={4} title='The Ultimate Lean Startup' price={499} rating={5} image='https://images-na.ssl-images-amazon.com/images/I/51Zymoq7UnL._SX325_BO1,204,203,200_.jpg'/>
         <Product id={5} title='Kenwood kMix Stand Mixer for Baking, Stylish Kitchen Mixer with K-beater, Dough Hook and Whisk, 5 Litre Glass Bowl'
         price={2499} rating={4} image='https://images-na.ssl-images-amazon.com/images/I/81O%2BGNdkzKL._AC_SX450_.jpg'/>
@@ -31,7 +64,7 @@ function Home() {
       <div className="home__row">
         <Product id={6} title="Samsung LC49RG90SSUXEN 49' Curved LED Gaming Monitor - Super Ultra Wide Dual WQHD 5120 x 1440"
         price={49000} rating={3} image="https://images-na.ssl-images-amazon.com/images/I/6125mFrzr6L._AC_SX355_.jpg"/>
-      </div>
+      </div> */}
     </div>
   );
 }
