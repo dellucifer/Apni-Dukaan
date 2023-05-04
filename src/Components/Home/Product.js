@@ -1,6 +1,7 @@
 import React from "react";
 import "./Product.css";
 import { useStateValue } from "../../StateProvider";
+import { AiFillStar } from 'react-icons/ai'
 
 function Product({ id, title, price, rating, image, rate_count }) {
   const [{ basket }, dispatch] = useStateValue();
@@ -28,8 +29,9 @@ function Product({ id, title, price, rating, image, rate_count }) {
           <strong>{price}</strong>
         </p>
         <div className="product__rating">
-          <p>🌟</p>
-          <p>{rating}</p>
+          <p><AiFillStar color="#eb5200"size={20}/></p>
+          <p> {rating}</p><p>/5</p>
+          <p>&nbsp;{' '}{'('}{rate_count}&nbsp;{'users rated)'}</p>
         </div>
       </div>
 
