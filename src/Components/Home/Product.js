@@ -4,6 +4,7 @@ import { useStateValue } from "../../StateProvider";
 import { AiFillStar } from 'react-icons/ai'
 
 function Product({ id, title, price, rating, image, rate_count }) {
+  // eslint-disable-next-line
   const [{ basket }, dispatch] = useStateValue();
 
   const addToBasket = () => {

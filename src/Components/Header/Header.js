@@ -3,11 +3,11 @@ import "./Header.css";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import { Link } from "react-router-dom";
-import { useStateValue } from '../../StateProvider'
+import { useStateValue } from "../../StateProvider";
 
 function Header() {
-
-  const [ {basket}, dispatch] = useStateValue();
+  // eslint-disable-next-line
+  const [{ basket }, dispatch] = useStateValue();
 
   return (
     <div className="header">
@@ -25,10 +25,12 @@ function Header() {
       </div>
 
       <div className="header__nav">
-        <div className="header__option">
-          <span className="header__option__top">Hello Guest</span>
-          <span className="header__option__bottom">Sign In</span>
-        </div>
+        <Link to="/login">
+          <div className="header__option">
+            <span className="header__option__top">Hello Guest</span>
+            <span className="header__option__bottom">Sign In</span>
+          </div>
+        </Link>
 
         <div className="header__option">
           <span className="header__option__top">Returns</span>
@@ -40,7 +42,7 @@ function Header() {
           <span className="header__option__bottom">Prime</span>
         </div>
 
-        <Link to='/checkout'>
+        <Link to="/checkout">
           <div className="header__optionBasket">
             <ShoppingBagIcon />
             <span className="header__option__bottom header__basketCount">
