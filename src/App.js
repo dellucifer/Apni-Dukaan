@@ -8,8 +8,10 @@ import Privacy from "./Components/PrivacyPolicy/Privacy";
 import { useEffect } from "react";
 import { auth } from "./firebase";
 import { useStateValue } from "./StateProvider";
+import Payment from "./Components/Payment/Payment";
 
 function App() {
+  // eslint-disable-next-line
   const [{basket}, dispatch] = useStateValue();
 
   useEffect(() => {
@@ -51,6 +53,15 @@ function App() {
               <>
                 <Header />
                 <Checkout />
+              </>
+            }
+          />
+          <Route
+            path="/payment"
+            element={
+              <>
+                <Header />
+                <Payment />
               </>
             }
           />

@@ -2,17 +2,20 @@ import React from "react";
 import "./Header.css";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useStateValue } from "../../StateProvider";
 import { auth } from "../../firebase";
+
 
 function Header() {
   // eslint-disable-next-line
   const [{ basket, user }, dispatch] = useStateValue();
+  const navigate = useNavigate();
 
   const handleAuthentication = () => {
     if (user) {
       auth.signOut();
+      navigate('/');
     }
   }
 
