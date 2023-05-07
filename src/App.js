@@ -9,10 +9,16 @@ import { useEffect } from "react";
 import { auth } from "./firebase";
 import { useStateValue } from "./StateProvider";
 import Payment from "./Components/Payment/Payment";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
 
 function App() {
+  const promise = loadStripe(
+    "pk_test_51N4PN6SFoHmNIl3oY1O5mQhsY2xz6490zQ1Xe8cS8judggqIfw2lHuODduwxZUBDJc4yQPS1KtvEzKawkFAMbH3k00yxOx7Mw0"
+  );
+
   // eslint-disable-next-line
-  const [{basket}, dispatch] = useStateValue();
+  const [{ basket }, dispatch] = useStateValue();
 
   useEffect(() => {
     // Puts Listener initially
@@ -22,17 +28,17 @@ function App() {
       if (authUser) {
         // User just logged in
         dispatch({
-          type: 'SET_USER',
-          user: authUser
-        })
+          type: "SET_USER",
+          user: authUser,
+        });
       } else {
         dispatch({
-          type: 'SET_USER',
-          user: null
-        })
+          type: "SET_USER",
+          user: null,
+        });
       }
-    })
-  }, [])
+    });
+  }, []);
 
   return (
     <Router>
@@ -57,11 +63,22 @@ function App() {
             }
           />
           <Route
+            path="/orders"
+            element={
+              <>
+                <Header />
+                <h1>ORders</h1>
+              </>
+            }
+          />
+          <Route
             path="/payment"
             element={
               <>
                 <Header />
-                <Payment />
+                <Elements stripe={promise}>
+                  <Payment />
+                </Elements>
               </>
             }
           />
