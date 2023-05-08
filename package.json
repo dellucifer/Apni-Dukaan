@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@mui/icons-material": "^5.11.16",
+    "@rollup/plugin-babel": "^6.0.3",
     "@stripe/react-stripe-js": "^2.1.0",
     "@stripe/stripe-js": "^1.52.1",
     "@testing-library/jest-dom": "^5.16.5",
