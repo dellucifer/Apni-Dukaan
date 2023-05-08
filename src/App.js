@@ -13,9 +13,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 
 function App() {
-  const promise = loadStripe(
-    "pk_test_51N4PN6SFoHmNIl3oY1O5mQhsY2xz6490zQ1Xe8cS8judggqIfw2lHuODduwxZUBDJc4yQPS1KtvEzKawkFAMbH3k00yxOx7Mw0"
-  );
+  const promise = loadStripe(process.env.REACT_APP_stripe_pk);
 
   // eslint-disable-next-line
   const [{ basket }, dispatch] = useStateValue();

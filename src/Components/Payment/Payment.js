@@ -20,44 +20,53 @@ function Payment() {
   const [clientSecret, setClientSecret] = useState(true);
 
   useEffect(() => {
-    // Generates special stripe secret
     const getClientSecret = async () => {
       const url = "https://famous-sheath-dress-newt.cyclic.app/processing";
-      var response = await fetch(url, {
-        method: 'POST',
-        headers: { 'Content-type': 'application/json' },
+      var res = await fetch(url, {
+        method: "POST",
+        headers: { "Content-type": "application/json" },
         body: JSON.stringify({
-          "total": getTotalBasket(basket) * 100
-      })
-      })
+          total: getTotalBasket(basket) * 100,
+        }),
+      });
 
-      response = await response.json();
-      // console.log(response.client_secret)
+      res = await res.json();
 
-      setClientSecret(response.client_secret);
-    }
+      if (res.client_secret) {
+        setClientSecret(res.client_secret);
+      }
+    };
     getClientSecret();
-    // console.log("This is client secret >>> ",clientSecret)
-  }, [basket])
+  }, [basket]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setProcessing(true);
 
-    console.log("Payment is getting done using this client secret >>> ", clientSecret);
+    console.log(elements.getElement(CardElement));
 
-    const payload = await stripe.confirmCardPayment(clientSecret, {
-      payment_method: {
-        card: elements.getElement(CardElement)
-      }
-    }).then(({ paymentIntent }) => {
-      // It means payment confirmation
-      setSucceeded(true);
-      // error(null);
-      setProcessing(false);
+    const payload = await stripe
+      .confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: elements.getElement(CardElement),
+        },
+      })
+      .then(({ paymentIntent }) => {
+        console.log(paymentIntent)
+        if (paymentIntent.status === "succeeded") {
+          // It means payment confirmation
+          setSucceeded(true);
+          // error(null);
+          setProcessing(false);
+        }
 
-      navigate("/orders", {replace: true});
-    })
+        navigate("/orders", { replace: true });
+      })
+      .catch((err) => {
+        alert("Payment Failed, Kindly try again");
+        setProcessing(false);
+        console.warn(err);
+      });
   };
 
   const handleChange = (e) => {
