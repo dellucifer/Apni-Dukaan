@@ -6,7 +6,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { useStateValue } from "../../StateProvider";
 import { auth } from "../../firebase";
 
-
 function Header() {
   // eslint-disable-next-line
   const [{ basket, user }, dispatch] = useStateValue();
@@ -15,9 +14,9 @@ function Header() {
   const handleAuthentication = () => {
     if (user) {
       auth.signOut();
-      navigate('/');
+      navigate("/");
     }
-  }
+  };
 
   return (
     <div className="header">
@@ -35,17 +34,23 @@ function Header() {
       </div>
 
       <div className="header__nav">
-        <Link to={!user && '/login'}>
+        <Link to={!user && "/login"}>
           <div onClick={handleAuthentication} className="header__option">
-            <span className="header__option__top">Hello {(user) ? user?.email.split('@')[0] : "Guest"}</span>
-            <span className="header__option__bottom">{user? "Sign Out": "Sign In"}</span>
+            <span className="header__option__top">
+              Hello {user ? user?.email.split("@")[0] : "Guest"}
+            </span>
+            <span className="header__option__bottom">
+              {user ? "Sign Out" : "Sign In"}
+            </span>
           </div>
         </Link>
 
-        <div className="header__option">
-          <span className="header__option__top">Returns</span>
-          <span className="header__option__bottom">& Orders</span>
-        </div>
+        <Link to="/orders">
+          <div className="header__option">
+            <span className="header__option__top">Returns</span>
+            <span className="header__option__bottom">& Orders</span>
+          </div>
+        </Link>
 
         <div className="header__option">
           <span className="header__option__top">Your</span>

@@ -11,6 +11,7 @@ import { useStateValue } from "./StateProvider";
 import Payment from "./Components/Payment/Payment";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
+import Orders from "./Components/Orders/Orders";
 
 function App() {
   const promise = loadStripe(process.env.REACT_APP_stripe_pk);
@@ -65,7 +66,7 @@ function App() {
             element={
               <>
                 <Header />
-                <h1>ORders</h1>
+                <Orders />
               </>
             }
           />

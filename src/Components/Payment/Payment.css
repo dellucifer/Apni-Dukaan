@@ -24,3 +24,30 @@
 .payment__address, .payment__items, .payment__details {
     flex: 0.8;
 }
+
+.payment__details > form {
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.payment__details > h3 {
+    padding: 20px;
+}
+
+.payment__button {
+    background: linear-gradient(215deg, #5068f0, #3A5AB4);
+    margin-top: 20px;
+    width: 100%;
+    border: none;
+    padding: 10px 50px;
+    color: white;
+    border-radius: 3px;
+    transition: background 2s;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.payment__button:hover {
+    background: linear-gradient(215deg, #3A5AB4, #5068f0);
+}
