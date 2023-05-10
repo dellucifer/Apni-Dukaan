@@ -18,7 +18,7 @@ function Home() {
       <div className="home__products">
         {data?.map((item, i) => {
           return(
-            <Product key={i} id={item.id} title={item.title} price={item.price} rating={item.rating.rate} rate_count={item.rating.count} image={item.image} />
+            <Product key={i} id={item.id} title={item.title} price={40*item.price} rating={item.rating.rate} rate_count={item.rating.count} image={item.image} />
           )
         })}
       </div>
