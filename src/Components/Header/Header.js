@@ -23,7 +23,7 @@ function Header() {
       <Link to="/">
         <img
           className="header__logo"
-          src="https://raw.githubusercontent.com/dellucifer/Apni-Dukaan/master/public/logo-apni_dukaan.png"
+          src={process.env.PUBLIC_URL + "/logo-apni_dukaan.png"}
           alt=""
         />
       </Link>

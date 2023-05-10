@@ -12,7 +12,7 @@ function Checkout() {
       <div className="checkout__left">
         <img
           className="checkout__ad"
-          src="https://raw.githubusercontent.com/dellucifer/Apni-Dukaan/master/public/banner_2.png"
+          src={process.env.PUBLIC_URL + "/banner_2.png"}
           alt=""
         />
         <div>

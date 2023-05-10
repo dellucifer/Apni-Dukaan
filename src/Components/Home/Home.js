@@ -10,7 +10,7 @@ function Home() {
       <div className="home__container">
         <img
           className="home__image"
-          src="https://raw.githubusercontent.com/dellucifer/Apni-Dukaan/master/public/Banner.png"
+          src={process.env.PUBLIC_URL + "/Banner.png"}
           alt=""
         />
       </div>
