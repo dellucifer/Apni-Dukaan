@@ -14,6 +14,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import Orders from "./Components/Orders/Orders";
 import { SyncLoader } from "react-spinners";
+import Iframe from "./Components/Checkout/Iframe";
 
 function App() {
   const promise = loadStripe(process.env.REACT_APP_stripe_pk);
@@ -45,6 +46,7 @@ function App() {
       setLoading(false)
     }, 1500);
     return () => clearTimeout(timer);
+    // eslint-disable-next-line
   }, []);
 
   return (
@@ -108,6 +110,14 @@ function App() {
             element={
               <>
                 <Privacy />
+              </>
+            }
+          />
+        <Route
+            path="/iframe"
+            element={
+              <>
+                <Iframe />
               </>
             }
           />

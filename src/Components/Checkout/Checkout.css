@@ -19,3 +19,15 @@
     padding: 10px;
     border-bottom: 1px solid lightgray;
 }
+
+/* Media Queries */
+@media only screen and (max-width: 768px) {
+    .checkout {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .checkout__right {
+        margin-top: 10%;
+    }
+  }

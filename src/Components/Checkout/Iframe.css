@@ -1,0 +1,46 @@
+.iframe {
+    height: 60%;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 3px 10px #D3652A;
+    text-align: justify;
+    background-color: rgba(255, 208, 183, 0.425);
+    border-radius: 5px;
+}
+
+.iframe__wrapper {
+    /* width: 80%;
+    margin-left: auto;
+    margin-right: auto; */
+    padding: 60px 100px 60px 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.iframe__wrapper > h1 {
+    margin-bottom: 5%;
+}
+
+.iframe__button {
+    border-radius: 2px;
+    background: linear-gradient(215deg, #5068f0, #3A5AB4);
+    border: none;
+    margin-top: 4%;
+    padding: 10px 20px;
+    color: white;
+    border-radius: 3px;
+    transition: 0.4s;
+    font-weight: 600;
+    cursor: pointer;
+    width: 80%;
+}
+
+.iframe__button:hover {
+    background: linear-gradient(215deg, #3A5AB4, #5068f0);
+}
