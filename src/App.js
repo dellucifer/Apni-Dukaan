@@ -1,4 +1,5 @@
 import "./App.css";
+import { useState } from "react";
 import Checkout from "./Components/Checkout/Checkout";
 import Header from "./Components/Header/Header";
 import Home from "./Components/Home/Home";
@@ -12,9 +13,11 @@ import Payment from "./Components/Payment/Payment";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import Orders from "./Components/Orders/Orders";
+import { SyncLoader } from "react-spinners";
 
 function App() {
   const promise = loadStripe(process.env.REACT_APP_stripe_pk);
+  const [loading, setLoading] = useState(true);
 
   // eslint-disable-next-line
   const [{ basket }, dispatch] = useStateValue();
@@ -37,6 +40,11 @@ function App() {
         });
       }
     });
+
+    const timer = setTimeout(() => {
+      setLoading(false)
+    }, 1500);
+    return () => clearTimeout(timer);
   }, []);
 
   return (
@@ -47,8 +55,14 @@ function App() {
             path="/"
             element={
               <>
-                <Header />
-                <Home />
+                {loading ? (
+                  <div className="app__spinner"><SyncLoader color="#eb5200" height={8} width={125} /></div>        
+                ) : (
+                  <>
+                    <Header />
+                    <Home />
+                  </>
+                )}
               </>
             }
           />
